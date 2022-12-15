@@ -11,15 +11,15 @@ from pathlib import Path
 
 login = input("Facebook login: ")
 password =  input("Facebook password: ")
-friend_name = input("Friends name and surname: ")
-facebook_account_id = input("Friends account ID: ")
+friend_name = input("Friend's name and surname: ")
+facebook_account_id = input("Friend's account ID: ")
 
 options = Options()
 options.add_argument("--start-fullscreen")
 options.add_argument("--disable-notifications")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-driver.get("http://www.google.com")
+driver.get("http://www.facebook.com")
 
 # handle COOKIES
 accept_cookies = WebDriverWait(driver, 10).until(
@@ -123,6 +123,6 @@ photo =  WebDriverWait(driver, 4).until(
             )
 
 downloads_path = str(Path.home() / "Downloads")
-urllib.request.urlretrieve(photo.get_attribute("src"),f"{downloads_path}/{facebook_account_id}.jpg")
+urllib.request.urlretrieve(photo.get_attribute("src"), f"{downloads_path}/{facebook_account_id}.jpg")
 
 driver.quit()
